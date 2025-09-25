@@ -18,19 +18,19 @@ def display_month_overview(parent, pages, month_to_display, window):
 
     income, expense, balance = get_summary(month_to_display)
 
-    selected_month_label = Label(summary_frame, text=f"Month: {month_to_display}", 
+    selected_month_label = Label(summary_frame, text=f"Month: {month_to_display}",
                              font=summary_font, bg=bg_header, fg=fg_col)
     selected_month_label.pack(side="right", padx=20)
 
-    total_income_label = Label(summary_frame, text=f"Total income: {income:.2f}", 
+    total_income_label = Label(summary_frame, text=f"Total income: {income:.2f}",
                                font=summary_font, bg=bg_header, fg=fg_col)
     total_income_label.pack(side="left", padx=20)
 
-    total_expense_label = Label(summary_frame, text=f"Total expense: {expense:.2f}", 
+    total_expense_label = Label(summary_frame, text=f"Total expense: {expense:.2f}",
                                 font=summary_font, bg=bg_header, fg=fg_col)
     total_expense_label.pack(side="left", padx=20)
 
-    balance_label = Label(summary_frame, text=f"Balance: {balance:.2f}", 
+    balance_label = Label(summary_frame, text=f"Balance: {balance:.2f}",
                           font=summary_font, bg=bg_header, fg=fg_col)
     balance_label.pack(side="left", padx=20)
 
@@ -47,7 +47,7 @@ def display_month_overview(parent, pages, month_to_display, window):
     content_frame.columnconfigure(0, weight=2)  # left
     content_frame.columnconfigure(1, weight=1)  # right
     content_frame.rowconfigure(0, weight=1)
-    
+
     # Left Frame for Transaction List
     transactions_frame = Frame(content_frame, bg=bg_col)
     transactions_frame.grid(row=0, column=0, sticky="nsew", padx=(0,10))
@@ -68,7 +68,7 @@ def display_month_overview(parent, pages, month_to_display, window):
     right_frame.grid(row=0, column=1, sticky="nsew")
 
     right_frame.rowconfigure(0, weight=1)
-    right_frame.rowconfigure(1, weight=0) 
+    right_frame.rowconfigure(1, weight=0)
     right_frame.columnconfigure(0, weight=1)
 
     # ---------- Pie chart Frame ----------
@@ -118,7 +118,7 @@ def display_month_overview(parent, pages, month_to_display, window):
         Label(popup, text="Tag:", bg=bg_col, fg=fg_col).pack(pady=5)
         tag_var=StringVar()
         predef_tags = get_value("tags")
-        tag_dropdown = ttk.Combobox(popup, textvariable=tag_var, 
+        tag_dropdown = ttk.Combobox(popup, textvariable=tag_var,
                                     values=predef_tags, state="readonly")
         tag_dropdown.pack(pady=5)
 
@@ -133,7 +133,7 @@ def display_month_overview(parent, pages, month_to_display, window):
         Label(popup, text="Type:", bg=bg_col, fg=fg_col).pack(pady=5)
         type_var = StringVar()
         predef_types = get_value("types")
-        type_dropdown = ttk.Combobox(popup, textvariable=type_var, 
+        type_dropdown = ttk.Combobox(popup, textvariable=type_var,
                                     values=predef_types, state="readonly")
         type_dropdown.pack(pady=5)
 
@@ -149,7 +149,7 @@ def display_month_overview(parent, pages, month_to_display, window):
             if not all([tag, description, t_type]):
                 messagebox.showerror("Missing input", "Fill all fields to add transaction")
                 return
-            
+
             query = f"INSERT INTO {month_to_display} (tag, amount, description, type) VALUES ('{tag}', '{amount}', '{description}', '{t_type}')"
             execute_sql(query)
 
@@ -157,9 +157,9 @@ def display_month_overview(parent, pages, month_to_display, window):
             refresh_pie_chart()
             refresh_summary()
             popup.destroy()
-        
+
         popup.bind("<Return>", confirm_add)
-        popup.bind("<Escape>", lambda e: popup.destroy())
+        popup.bind_all("<Escape>", lambda e: popup.destroy())
         Button(popup, text="Add", command=confirm_add, **button_style).pack(pady=10)
 
     add_btn = Button(button_frame, text="Add Transaction",
@@ -180,7 +180,7 @@ def display_month_overview(parent, pages, month_to_display, window):
         refresh_pie_chart()
         refresh_summary()
 
-    remove_btn = Button(button_frame, text="Remove Transaction", 
+    remove_btn = Button(button_frame, text="Remove Transaction",
                         command=remove_transaction, **button_style)
     remove_btn.pack(fill="x", pady=(0,10))
 
@@ -217,7 +217,7 @@ def get_exp_dist(month_name):
     if not rows:
         return ["No data"], [1]
     return zip(*rows)
-    
+
 def get_summary(month_name):
     income_query = f"SELECT SUM(amount) FROM {month_name} WHERE type='income'"
     expense_query = f"SELECT SUM(amount) FROM {month_name} WHERE type='expense'"

@@ -52,7 +52,7 @@ def display_starting_page(parent, pages, window):
             if not year.isdigit():
                 messagebox.showerror("Error", "Must be a number")
                 return
-            
+
             year_num = int(year)
             if year_num in get_value("years"):
                 messagebox.showerror("Error", "Year already exists")
@@ -61,14 +61,14 @@ def display_starting_page(parent, pages, window):
             if not (15 <= year_num <= 50):
                 messagebox.showerror("Error", "Year must be between 15 and 50")
                 return
-            
+
             add_year(year_num)
             prepare_cash_chronicles()
             messagebox.showinfo("Success", f"Year {year_num} added!")
             popup.destroy()
 
         popup.bind("<Return>", confirm_year)
-        popup.bind("<Escape>", lambda e: popup.destroy())
+        popup.bind_all("<Escape>", lambda e: popup.destroy())
         Button(popup, text="Add", command=confirm_year, **button_style).pack(pady=10)
 
     def on_view_month():
@@ -77,7 +77,7 @@ def display_starting_page(parent, pages, window):
             del pages["month_menu"]
             pages["month_menu"] = display_month_menu(parent, pages, window)
             pages["month_menu"].grid(row=0, column=0, sticky="nsew")
-        pages["month_menu"].tkraise()        
+        pages["month_menu"].tkraise()
 
     def on_add_tag():
         popup = Toplevel(frame)
@@ -101,7 +101,7 @@ def display_starting_page(parent, pages, window):
             if tag == "":
                 messagebox.showerror("Error", "Tag cant be empty")
                 return
-            
+
             if tag in get_value("tags"):
                 messagebox.showerror("Error", "Tag already exists")
                 return
@@ -109,13 +109,13 @@ def display_starting_page(parent, pages, window):
             if len(tag) > 20:
                 messagebox.showerror("Error", "Tag too long")
                 return
-            
+
             add_tag(tag)
             messagebox.showinfo("Success", f"Tag {tag} added!")
             popup.destroy()
 
         popup.bind("<Return>", confirm_tag)
-        popup.bind("<Escape>", lambda e: popup.destroy())
+        popup.bind_all("<Escape>", lambda e: popup.destroy())
         Button(popup, text="Add", command=confirm_tag, **button_style).pack(pady=10)
 
     def on_delete_year():
@@ -177,7 +177,7 @@ def display_starting_page(parent, pages, window):
             if not (15 <= year_num <= 50):
                 messagebox.showerror("Error", "Year must be between 15 and 50")
                 return
-            
+
             if year not in year_values:
                 messagebox.showerror("Error", "Year does not exist.")
                 return
@@ -194,7 +194,7 @@ def display_starting_page(parent, pages, window):
             popup.destroy()
 
         popup.bind("<Return>", confirm_delete)
-        popup.bind("<Escape>", lambda e: popup.destroy())
+        popup.bind_all("<Escape>", lambda e: popup.destroy())
         Button(popup, text="Delete", command=confirm_delete, **button_style).pack(pady=10)
 
     view_btn = Button(frame, text="► View month", command=on_view_month, **button_style)
