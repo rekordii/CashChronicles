@@ -1,6 +1,6 @@
 import sqlite3
 
-from config import file_path
+from config import DB_PATH
 from util import check_db_table_ident, execute_sql, get_value, try_create
 
 def prepare_cash_chronicles() -> None:
@@ -11,7 +11,7 @@ def prepare_cash_chronicles() -> None:
     created: int = 0
 
     #Database Connection and addition of tables
-    con = sqlite3.connect(file_path)
+    con = sqlite3.connect(DB_PATH)
     cur = con.cursor()
 
     for month in months:
@@ -83,7 +83,7 @@ def add_table_entry(
     execute_sql(stmt)
 
 def display_tables() -> None:
-    con = sqlite3.connect(file_path)
+    con = sqlite3.connect(DB_PATH)
     cur = con.cursor()
     cur.execute("SELECT name FROM sqlite_master WHERE type='table';")
     tables = cur.fetchall()

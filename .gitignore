@@ -6,3 +6,4 @@ dist
 pages/__pycache__
 resources/backup
 pyinstaller.txt
+test.py

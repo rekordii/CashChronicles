@@ -9,20 +9,20 @@ from util import add_tag, add_year, delete_year, execute_sql, get_value
 from db_integration import prepare_cash_chronicles
 
 def display_starting_page(parent, pages, window):
-    frame = Frame(parent, bg=bg_col)
+    frame = Frame(parent, bg=BG_COL)
 
     # Header Label
     header_font = tkFont.Font(family="Arial", size=20, weight="bold")
-    Label(frame, text="What do you plan to do?", font=header_font, bg=bg_col, fg=fg_col).pack(pady=40)
+    Label(frame, text="What do you plan to do?", font=header_font, bg=BG_COL, fg=FG_COL).pack(pady=40)
 
     button_font = tkFont.Font(family="Arial", size=18, weight="bold")
     button_style = {
-        "bg": bg_header,
-        "fg": fg_col,
+        "bg": BG_HEADER,
+        "fg": FG_COL,
         "font": button_font,
         "relief": FLAT,
-        "activebackground": bg_col,
-        "activeforeground": fg_col_active,
+        "activebackground": BG_COL,
+        "activeforeground": FG_COL_ACTIVE,
         "width": 15,
         "height": 2,
         "highlightthickness": 0,
@@ -40,9 +40,9 @@ def display_starting_page(parent, pages, window):
         x = (screen_width // 2) - (popup_width // 2)
         y = (screen_height // 2) - (popup_height // 2)
         popup.geometry(f"{popup_width}x{popup_height}+{x}+{y}")
-        popup.config(bg=bg_col)
+        popup.config(bg=BG_COL)
 
-        Label(popup, text="Year (15-50):", bg=bg_col, fg=fg_col).pack(pady=5)
+        Label(popup, text="Year (15-50):", bg=BG_COL, fg=FG_COL).pack(pady=5)
         year_var = StringVar()
         Entry(popup, textvariable=year_var).pack(pady=5)
 
@@ -89,9 +89,9 @@ def display_starting_page(parent, pages, window):
         x = (screen_width // 2) - (popup_width // 2)
         y = (screen_height // 2) - (popup_height // 2)
         popup.geometry(f"{popup_width}x{popup_height}+{x}+{y}")
-        popup.config(bg=bg_col)
+        popup.config(bg=BG_COL)
 
-        Label(popup, text="Tag:", bg=bg_col, fg=fg_col).pack(pady=5)
+        Label(popup, text="Tag:", bg=BG_COL, fg=FG_COL).pack(pady=5)
         tag_var = StringVar()
         Entry(popup, textvariable=tag_var).pack(pady=5)
 
@@ -128,7 +128,7 @@ def display_starting_page(parent, pages, window):
         x = (screen_width // 2) - (popup_width // 2)
         y = (screen_height // 2) - (popup_height // 2)
         popup.geometry(f"{popup_width}x{popup_height}+{x}+{y}")
-        popup.config(bg=bg_col)
+        popup.config(bg=BG_COL)
 
         year_values = [str(y) for y in get_value("years")]
 
@@ -141,22 +141,22 @@ def display_starting_page(parent, pages, window):
 
         style.configure(
             "Custom.TCombobox",
-            fieldbackground=bg_col,     # background inside entry box
-            background=bg_header,       # dropdown button background
-            foreground=fg_col,          # text color in entry
-            arrowcolor=fg_col,          # color of dropdown arrow
-            selectforeground=fg_col_active,
-            selectbackground=bg_header,
+            fieldbackground=BG_COL,     # background inside entry box
+            background=BG_HEADER,       # dropdown button background
+            foreground=FG_COL,          # text color in entry
+            arrowcolor=FG_COL,          # color of dropdown arrow
+            selectforeground=FG_COL_ACTIVE,
+            selectbackground=BG_HEADER,
             font=combo_font,
             padding=5
         )
-        popup.option_add("*TCombobox*Listbox.background", bg_col)
-        popup.option_add("*TCombobox*Listbox.foreground", fg_col)
-        popup.option_add("*TCombobox*Listbox.selectBackground", bg_header)
-        popup.option_add("*TCombobox*Listbox.selectForeground", fg_col_active)
+        popup.option_add("*TCombobox*Listbox.background", BG_COL)
+        popup.option_add("*TCombobox*Listbox.foreground", FG_COL)
+        popup.option_add("*TCombobox*Listbox.selectBackground", BG_HEADER)
+        popup.option_add("*TCombobox*Listbox.selectForeground", FG_COL_ACTIVE)
         popup.option_add("*TCombobox*Listbox.font", combo_font)
 
-        Label(popup, text="Year to delete:", bg=bg_col, fg=fg_col).pack(pady=5)
+        Label(popup, text="Year to delete:", bg=BG_COL, fg=FG_COL).pack(pady=5)
         del_var = StringVar()
         dropdown = ttk.Combobox(
             popup,

@@ -8,11 +8,11 @@ from .month_overview import display_month_overview
 from util import execute_sql
 
 def display_month_menu(parent, pages, window):
-    frame = Frame(parent, bg=bg_col)
+    frame = Frame(parent, bg=BG_COL)
 
     # Header Label
     header_font = tkFont.Font(family="Arial", size=20, weight="bold")
-    Label(frame, text="Select a Month", font=header_font, bg=bg_col, fg=fg_col).pack(pady=40)
+    Label(frame, text="Select a Month", font=header_font, bg=BG_COL, fg=FG_COL).pack(pady=40)
 
     tables = [row[0] for row in execute_sql("SELECT name FROM sqlite_master WHERE type='table';")]
     try:
@@ -29,19 +29,19 @@ def display_month_menu(parent, pages, window):
 
     style.configure(
         "Custom.TCombobox",
-        fieldbackground=bg_col,     # background inside entry box
-        background=bg_header,       # dropdown button background
-        foreground=fg_col,          # text color in entry
-        arrowcolor=fg_col,          # color of dropdown arrow
-        selectforeground=fg_col_active,
-        selectbackground=bg_header,
+        fieldbackground=BG_COL,     # background inside entry box
+        background=BG_HEADER,       # dropdown button background
+        foreground=FG_COL,          # text color in entry
+        arrowcolor=FG_COL,          # color of dropdown arrow
+        selectforeground=FG_COL_ACTIVE,
+        selectbackground=BG_HEADER,
         font=combo_font,
         padding=5
     )
-    window.option_add("*TCombobox*Listbox.background", bg_col)
-    window.option_add("*TCombobox*Listbox.foreground", fg_col)
-    window.option_add("*TCombobox*Listbox.selectBackground", bg_header)
-    window.option_add("*TCombobox*Listbox.selectForeground", fg_col_active)
+    window.option_add("*TCombobox*Listbox.background", BG_COL)
+    window.option_add("*TCombobox*Listbox.foreground", BG_COL)
+    window.option_add("*TCombobox*Listbox.selectBackground", BG_HEADER)
+    window.option_add("*TCombobox*Listbox.selectForeground", FG_COL_ACTIVE)
     window.option_add("*TCombobox*Listbox.font", combo_font)
 
     # Dropdown Var
@@ -57,12 +57,12 @@ def display_month_menu(parent, pages, window):
 
     button_font = tkFont.Font(family="Arial", size=18, weight="bold")
     button_style = {
-        "bg": bg_header,
-        "fg": fg_col,
+        "bg": BG_HEADER,
+        "fg": FG_COL,
         "font": button_font,
         "relief": FLAT,
-        "activebackground": bg_col,
-        "activeforeground": fg_col_active,
+        "activebackground": BG_COL,
+        "activeforeground": FG_COL_ACTIVE,
         "width": 15,
         "height": 2,
         "highlightthickness": 0,

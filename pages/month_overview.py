@@ -5,33 +5,33 @@ import tkinter.font as tkFont
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import matplotlib.pyplot as plt
 
-from .pages_config import bg_col, bg_header, fg_col, fg_col_active, window_size
+from .pages_config import *
 from util import execute_sql, get_value
 
 def display_month_overview(parent, pages, month_to_display, window):
-    frame = Frame(parent, bg=bg_col)
+    frame = Frame(parent, bg=BG_COL)
 
     # ---------- Top Summary Bar ----------
-    summary_frame = Frame(frame, bg=bg_header, height=80)
+    summary_frame = Frame(frame, bg=BG_HEADER, height=80)
     summary_frame.pack(fill="x", pady=5)
     summary_font = tkFont.Font(family="Arial", size=14, weight="bold")
 
     income, expense, balance = get_summary(month_to_display)
 
     selected_month_label = Label(summary_frame, text=f"Month: {month_to_display}",
-                             font=summary_font, bg=bg_header, fg=fg_col)
+                             font=summary_font, bg=BG_HEADER, fg=FG_COL)
     selected_month_label.pack(side="right", padx=20)
 
     total_income_label = Label(summary_frame, text=f"Total income: {income:.2f}",
-                               font=summary_font, bg=bg_header, fg=fg_col)
+                               font=summary_font, bg=BG_HEADER, fg=FG_COL)
     total_income_label.pack(side="left", padx=20)
 
     total_expense_label = Label(summary_frame, text=f"Total expense: {expense:.2f}",
-                                font=summary_font, bg=bg_header, fg=fg_col)
+                                font=summary_font, bg=BG_HEADER, fg=FG_COL)
     total_expense_label.pack(side="left", padx=20)
 
     balance_label = Label(summary_frame, text=f"Balance: {balance:.2f}",
-                          font=summary_font, bg=bg_header, fg=fg_col)
+                          font=summary_font, bg=BG_HEADER, fg=FG_COL)
     balance_label.pack(side="left", padx=20)
 
     def refresh_summary():
@@ -41,7 +41,7 @@ def display_month_overview(parent, pages, month_to_display, window):
         balance_label.config(text=f"Balance: {balance:.2f}")
 
     # ---------- Main Content ----------
-    content_frame = Frame(frame, bg=bg_col)
+    content_frame = Frame(frame, bg=BG_COL)
     content_frame.pack(fill="both", expand=True, padx=10, pady=10)
 
     content_frame.columnconfigure(0, weight=2)  # left
@@ -49,7 +49,7 @@ def display_month_overview(parent, pages, month_to_display, window):
     content_frame.rowconfigure(0, weight=1)
 
     # Left Frame for Transaction List
-    transactions_frame = Frame(content_frame, bg=bg_col)
+    transactions_frame = Frame(content_frame, bg=BG_COL)
     transactions_frame.grid(row=0, column=0, sticky="nsew", padx=(0,10))
 
     tree_columns = ("Tag", "Amount", "Descripion", "Type")
@@ -64,7 +64,7 @@ def display_month_overview(parent, pages, month_to_display, window):
         transaction_tree.insert("", "end", values=t)
 
     # Right Frame for Pie Chart and Buttons
-    right_frame = Frame(content_frame, bg=bg_col)
+    right_frame = Frame(content_frame, bg=BG_COL)
     right_frame.grid(row=0, column=1, sticky="nsew")
 
     right_frame.rowconfigure(0, weight=1)
@@ -72,7 +72,7 @@ def display_month_overview(parent, pages, month_to_display, window):
     right_frame.columnconfigure(0, weight=1)
 
     # ---------- Pie chart Frame ----------
-    chart_frame = Frame(right_frame, bg=bg_col)
+    chart_frame = Frame(right_frame, bg=BG_COL)
     chart_frame.grid(row=0, column=0, sticky="nsew")
 
     def refresh_pie_chart():
@@ -86,17 +86,17 @@ def display_month_overview(parent, pages, month_to_display, window):
     refresh_pie_chart()
 
     # ---------- Bottom buttons ----------
-    button_frame = Frame(right_frame, bg=bg_col)
+    button_frame = Frame(right_frame, bg=BG_COL)
     button_frame.grid(row=1, column=0, sticky="ew", pady=10)
 
     btn_font = tkFont.Font(family="Arial", size=14, weight="bold")
     button_style = {
-        "bg": bg_header,
-        "fg": fg_col,
+        "bg": BG_HEADER,
+        "fg": FG_COL,
         "font": btn_font,
         "relief": FLAT,
-        "activebackground": bg_col,
-        "activeforeground": fg_col_active,
+        "activebackground": BG_COL,
+        "activeforeground": FG_COL_ACTIVE,
         "width": 20,
         "height": 2,
         "highlightthickness": 0,
@@ -113,24 +113,24 @@ def display_month_overview(parent, pages, month_to_display, window):
         x = (screen_width // 2) - (popup_width // 2)
         y = (screen_height // 2) - (popup_height // 2)
         popup.geometry(f"{popup_width}x{popup_height}+{x}+{y}")
-        popup.config(bg=bg_col)
+        popup.config(bg=BG_COL)
 
-        Label(popup, text="Tag:", bg=bg_col, fg=fg_col).pack(pady=5)
+        Label(popup, text="Tag:", bg=BG_COL, fg=FG_COL).pack(pady=5)
         tag_var=StringVar()
         predef_tags = get_value("tags")
         tag_dropdown = ttk.Combobox(popup, textvariable=tag_var,
                                     values=predef_tags, state="readonly")
         tag_dropdown.pack(pady=5)
 
-        Label(popup, text="Amount:", bg=bg_col, fg=fg_col).pack(pady=5)
+        Label(popup, text="Amount:", bg=BG_COL, fg=FG_COL).pack(pady=5)
         amount_entry = Entry(popup)
         amount_entry.pack(pady=5)
 
-        Label(popup, text="Description:", bg=bg_col, fg=fg_col).pack(pady=5)
+        Label(popup, text="Description:", bg=BG_COL, fg=FG_COL).pack(pady=5)
         desc_entry = Entry(popup)
         desc_entry.pack(pady=5)
 
-        Label(popup, text="Type:", bg=bg_col, fg=fg_col).pack(pady=5)
+        Label(popup, text="Type:", bg=BG_COL, fg=FG_COL).pack(pady=5)
         type_var = StringVar()
         predef_types = get_value("types")
         type_dropdown = ttk.Combobox(popup, textvariable=type_var,
@@ -202,13 +202,13 @@ def display_month_overview(parent, pages, month_to_display, window):
     def on_back():
         plt.close("all")
         pages["month_menu"].tkraise()
-        window.geometry(window_size)
+        window.geometry(WINDOW_SIZE)
 
     def on_exit():
         plt.close("all")
         window.destroy()
 
-    side_by_side_frame = Frame(button_frame, bg=bg_col)
+    side_by_side_frame = Frame(button_frame, bg=BG_COL)
     side_by_side_frame.pack(fill="x")
 
     back_btn = Button(side_by_side_frame, text="◄ Back", command=on_back, **button_style)
