@@ -33,6 +33,4 @@ atomic_copy(db_source, file_path)
 atomic_copy(config_source, config_file)
 
 resources_path = os.path.join(base_path, "resources")
-icon_png = os.path.join(resources_path, "icon_120px.png")
-icon_ico = os.path.join(resources_path, "icon_120px.ico")
-icon_path = icon_ico if platform.system() == "Windows" else icon_png
+icon_path = os.path.join(resources_path, "icon_120px.png")
