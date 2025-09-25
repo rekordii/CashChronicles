@@ -144,6 +144,17 @@ def display_month_overview(parent, pages, month_to_display, window):
             except ValueError:
                 messagebox.showerror("Invalid input", "Amount must be a number")
                 return
+
+            if "." in amount_entry.get():
+                decimals = amount_entry.get().split(".")[1]
+                if len(decimals) > 2:
+                    messagebox.showerror("Invalid amount", "Amount cannot have 3 or more digits after decimal point")
+                    return
+
+            if len(amount_entry.get()) > 10:
+                messagebox.showerror("Please think", "You dont have that much money")
+                return
+
             description = desc_entry.get()
             t_type = type_var.get()
             if not all([tag, description, t_type]):
@@ -174,7 +185,11 @@ def display_month_overview(parent, pages, month_to_display, window):
         for item in selected:
             values = transaction_tree.item(item, "values")
             tag, amount, description, t_type = values
-            query = f"DELETE FROM {month_to_display} WHERE tag='{tag}' AND amount='{amount}' AND description='{description}' AND type='{t_type}' LIMIT 1"
+            try:
+                amount = float(amount)
+            except ValueError:
+                amount = 0
+            query = f"DELETE FROM {month_to_display} WHERE tag='{tag}' AND amount='{amount}' AND description='{description}' AND type='{t_type}'"
             execute_sql(query)
             transaction_tree.delete(item)
         refresh_pie_chart()
