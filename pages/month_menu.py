@@ -39,7 +39,7 @@ def display_month_menu(parent, pages, window):
         padding=5
     )
     window.option_add("*TCombobox*Listbox.background", BG_COL)
-    window.option_add("*TCombobox*Listbox.foreground", BG_COL)
+    window.option_add("*TCombobox*Listbox.foreground", FG_COL)
     window.option_add("*TCombobox*Listbox.selectBackground", BG_HEADER)
     window.option_add("*TCombobox*Listbox.selectForeground", FG_COL_ACTIVE)
     window.option_add("*TCombobox*Listbox.font", combo_font)
