@@ -1,0 +1,8 @@
+__pycache__
+.venv
+build
+CashChronicles.spec
+dist
+pages/__pycache__
+resources/backup
+pyinstaller.txt

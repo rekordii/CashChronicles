@@ -1,0 +1,5 @@
+bg_col = "#42454a"
+bg_header = "#1E2F4C"
+fg_col = "#b5873c"
+fg_col_active = "#f3c669"
+window_size = "600x800"

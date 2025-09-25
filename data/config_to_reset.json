@@ -1,0 +1,39 @@
+{
+    "months": [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December"
+    ],
+    "years": [
+    ],
+    "tags": [
+        "activities",
+        "education",
+        "food",
+        "gaming",
+        "gift",
+        "health",
+        "hobbies",
+        "housing",
+        "other",
+        "subscriptions",
+        "transport",
+        "travel",
+        "utilities"
+    ],
+    "types": [
+        "expense",
+        "income",
+        "investment",
+        "other"
+    ]
+}
