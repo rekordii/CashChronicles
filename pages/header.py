@@ -18,7 +18,9 @@ class Header(Frame):
         icon_label.pack(side="left", padx=20)
 
         # ---------- Title ----------
-        title_font = tkFont.Font(family="Arial", size=24, weight="bold")
-        title_label = Label(self, text="Your CashChronicles", 
+        width = parent.winfo_screenwidth()
+        title_size = 22 if width < 1900 else 24
+        title_font = tkFont.Font(family="Arial", size=title_size, weight="bold")
+        title_label = Label(self, text="Your CashChronicles",
                             font=title_font, fg="#f3c669", bg=BG_HEADER)
         title_label.pack(anchor="center", expand=True)

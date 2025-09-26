@@ -11,15 +11,20 @@ from db_integration import prepare_cash_chronicles
 def display_starting_page(parent, pages, window):
     frame = Frame(parent, bg=BG_COL)
 
-    W_WIDTH = int(window.winfo_screenwidth() * 0.3)
-    W_HEIGHT = int(window.winfo_screenheight() * 0.8)
-    WINDOW_SIZE = f"{W_WIDTH}x{W_HEIGHT}"
+    width = window.winfo_screenwidth()
+    if width < 1900:
+        header_size = 18
+        button_size = 16
+    else:
+        header_size = 20
+        button_size = 18
+    W_WIDTH = int(width * 0.3)
 
     # Header Label
-    header_font = tkFont.Font(family="Arial", size=20, weight="bold")
+    header_font = tkFont.Font(family="Arial", size=header_size, weight="bold")
     Label(frame, text="What do you plan to do?", font=header_font, bg=BG_COL, fg=FG_COL).pack(pady=40)
 
-    button_font = tkFont.Font(family="Arial", size=18, weight="bold")
+    button_font = tkFont.Font(family="Arial", size=button_size, weight="bold")
     button_style = {
         "bg": BG_HEADER,
         "fg": FG_COL,

@@ -5,9 +5,14 @@ from pages.pages_config import BG_COL
 from config import ICON_PATH
 
 window = Tk()
-W_WIDTH = int(window.winfo_screenwidth() * 0.3)
-W_HEIGHT = int(window.winfo_screenheight() * 0.8)
-WINDOW_SIZE = f"{W_WIDTH}x{W_HEIGHT}"
+S_WIDTH = window.winfo_screenwidth()
+S_HEIGHT = window.winfo_screenheight()
+W_WIDTH = int(S_WIDTH * 0.3)
+W_HEIGHT = int(S_HEIGHT * 0.8)
+x = int(S_WIDTH * 0.05)
+y = int(S_HEIGHT * 0.05)
+WINDOW_SIZE = f"{W_WIDTH}x{W_HEIGHT}+{x}+{y}"
+
 window.geometry(WINDOW_SIZE)
 window.title("CashChronicles")
 window.config(background=BG_COL)
