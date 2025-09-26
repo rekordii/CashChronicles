@@ -11,6 +11,10 @@ from db_integration import prepare_cash_chronicles
 def display_starting_page(parent, pages, window):
     frame = Frame(parent, bg=BG_COL)
 
+    W_WIDTH = int(window.winfo_screenwidth() * 0.3)
+    W_HEIGHT = int(window.winfo_screenheight() * 0.8)
+    WINDOW_SIZE = f"{W_WIDTH}x{W_HEIGHT}"
+
     # Header Label
     header_font = tkFont.Font(family="Arial", size=20, weight="bold")
     Label(frame, text="What do you plan to do?", font=header_font, bg=BG_COL, fg=FG_COL).pack(pady=40)
@@ -23,8 +27,7 @@ def display_starting_page(parent, pages, window):
         "relief": FLAT,
         "activebackground": BG_COL,
         "activeforeground": FG_COL_ACTIVE,
-        "width": 15,
-        "height": 2,
+        "width": int(W_WIDTH * 0.025),
         "highlightthickness": 0,
         "bd": 1,
         "anchor": "w"
@@ -198,18 +201,18 @@ def display_starting_page(parent, pages, window):
         Button(popup, text="Delete", command=confirm_delete, **button_style).pack(pady=10)
 
     view_btn = Button(frame, text="► View month", command=on_view_month, **button_style)
-    view_btn.pack(pady=15)
+    view_btn.pack(fill="y", pady=15, expand=True)
 
     month_btn = Button(frame, text="► Add year", command=on_add_year, **button_style)
-    month_btn.pack(pady=15)
+    month_btn.pack(fill="y", pady=15, expand=True)
 
     tag_btn = Button(frame, text="► Add tag", command=on_add_tag, **button_style)
-    tag_btn.pack(pady=15)
+    tag_btn.pack(fill="y", pady=15, expand=True)
 
     delete_btn = Button(frame, text="► Delete Year", command=on_delete_year, **button_style)
-    delete_btn.pack(pady=15)
+    delete_btn.pack(fill="y", pady=15, expand=True)
 
     exit_btn = Button(frame, text="⤷ Exit", command=window.destroy, **button_style)
-    exit_btn.pack(pady=15)
+    exit_btn.pack(fill="y", pady=(15, 50), expand=True)
 
     return frame
