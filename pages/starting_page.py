@@ -75,8 +75,8 @@ def display_starting_page(parent, pages, window):
         if "month_menu" in pages:
             pages["month_menu"].destroy()
             del pages["month_menu"]
-            pages["month_menu"] = display_month_menu(parent, pages, window)
-            pages["month_menu"].grid(row=0, column=0, sticky="nsew")
+        pages["month_menu"] = display_month_menu(parent, pages, window)
+        pages["month_menu"].grid(row=0, column=0, sticky="nsew")
         pages["month_menu"].tkraise()
 
     def on_add_tag():

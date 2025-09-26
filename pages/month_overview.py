@@ -200,6 +200,9 @@ def display_month_overview(parent, pages, month_to_display, window):
     remove_btn.pack(fill="x", pady=(0,10))
 
     def on_back():
+        W_WIDTH = int(window.winfo_screenwidth() * 0.3)
+        W_HEIGHT = int(window.winfo_screenheight() * 0.8)
+        WINDOW_SIZE = f"{W_WIDTH}x{W_HEIGHT}"
         plt.close("all")
         pages["month_menu"].tkraise()
         window.geometry(WINDOW_SIZE)
