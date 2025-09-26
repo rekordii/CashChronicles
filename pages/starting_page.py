@@ -12,13 +12,15 @@ def display_starting_page(parent, pages, window):
     frame = Frame(parent, bg=BG_COL)
 
     width = window.winfo_screenwidth()
+    W_WIDTH = int(width * 0.3)
     if width < 1900:
         header_size = 18
         button_size = 16
+        button_width = int(W_WIDTH * 0.03)
     else:
         header_size = 20
         button_size = 18
-    W_WIDTH = int(width * 0.3)
+        button_width = int(W_WIDTH * 0.025)
 
     # Header Label
     header_font = tkFont.Font(family="Arial", size=header_size, weight="bold")
@@ -32,7 +34,7 @@ def display_starting_page(parent, pages, window):
         "relief": FLAT,
         "activebackground": BG_COL,
         "activeforeground": FG_COL_ACTIVE,
-        "width": int(W_WIDTH * 0.025),
+        "width": button_width,
         "highlightthickness": 0,
         "bd": 1,
         "anchor": "w"

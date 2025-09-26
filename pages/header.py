@@ -19,8 +19,9 @@ class Header(Frame):
 
         # ---------- Title ----------
         width = parent.winfo_screenwidth()
-        title_size = 22 if width < 1900 else 24
+        title_size = 20 if width < 1900 else 24
+        title = "CashChronicles" if width < 1900 else "Your CashChronicles"
         title_font = tkFont.Font(family="Arial", size=title_size, weight="bold")
-        title_label = Label(self, text="Your CashChronicles",
+        title_label = Label(self, text=title,
                             font=title_font, fg="#f3c669", bg=BG_HEADER)
         title_label.pack(anchor="center", expand=True)
