@@ -1,5 +1,6 @@
 import os
 import platform
+import sys
 
 # ---------- Create data dirs ----------
 if platform.system() == "Windows":
@@ -10,15 +11,17 @@ else:
 os.makedirs(USER_DATA_DIR, exist_ok=True)
 
 # ---------- Data Paths ----------
-BASE_PATH = os.path.abspath(os.path.dirname(__file__))
+if hasattr(sys, "_MEIPASS"):
+    BASE_PATH = sys._MEIPASS
+else:
+    BASE_PATH = os.path.abspath(os.path.dirname(__file__))
 DATA_PATH = os.path.join(BASE_PATH, "data")
 RESET_PATH = os.path.join(DATA_PATH, "config_to_reset.json")
 CONFIG_SOURCE = os.path.join(DATA_PATH, "config.json")
 DB_SOURCE = os.path.join(DATA_PATH, "cash_chronicles.db")
 DB_PATH = os.path.join(USER_DATA_DIR, "cash_chronicles.db")
 CONFIG_PATH = os.path.join(USER_DATA_DIR, "config.json")
-RES_PATH = os.path.join(BASE_PATH, "resources")
-ICON_PATH = os.path.join(RES_PATH, "icon_120px.png")
+ICON_PATH = os.path.join(DATA_PATH, "icon_120px.png")
 
 def atomic_copy(src, dest) -> None:
     """Copy file safely to dest using a temp file and atomic replace."""

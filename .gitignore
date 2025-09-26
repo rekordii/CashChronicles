@@ -4,6 +4,6 @@ build
 CashChronicles.spec
 dist
 pages/__pycache__
-resources/backup
+resources
 pyinstaller.txt
 test.py
