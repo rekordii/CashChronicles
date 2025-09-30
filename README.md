@@ -33,6 +33,7 @@ Get an overview of you expenses <br>
 
 ### Easy way:
 - Download the executable or binary from the release section and run
+- Linux run: `chmod +x /path/to/CashChronicles`
 - Linux icon: to add an icon on linux a .desktop file is required
 
 ### Alternative way:
