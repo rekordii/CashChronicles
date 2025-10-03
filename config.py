@@ -2,6 +2,8 @@ import os
 import platform
 import sys
 
+APP_VERSION = 1.0
+
 # ---------- Create data dirs ----------
 if platform.system() == "Windows":
     USER_DATA_DIR = os.path.join(os.environ["APPDATA"], "CashChronicles")

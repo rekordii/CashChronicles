@@ -5,7 +5,7 @@ import tkinter.font as tkFont
 
 from .pages_config import *
 from .month_menu import display_month_menu
-from util import add_tag, add_year, delete_year, execute_sql, get_value, import_csv
+from util import add_tag, add_year, check_for_updates, delete_year, execute_sql, get_value, import_csv
 from db_integration import prepare_cash_chronicles
 
 def display_starting_page(parent, pages, window):
@@ -22,7 +22,7 @@ def display_starting_page(parent, pages, window):
     else:
         header_size = 20
         button_size = 18
-        button_width = int(W_WIDTH * 0.025)
+        button_width = int(W_WIDTH * 0.028)
 
     # Header Label
     header_font = tkFont.Font(family="Arial", size=header_size, weight="bold")
@@ -216,7 +216,8 @@ def display_starting_page(parent, pages, window):
         ("► Add year", on_add_year),
         ("► Add tag", on_add_tag),
         ("► Delete Year", on_delete_year),
-        ("► Import .csv", import_csv)
+        ("► Import .csv", import_csv),
+        ("► Check Version", check_for_updates)
     ]:
         Button(frame, text=text, command=command, **button_style).pack(anchor="center", pady=5)
 

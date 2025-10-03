@@ -1,7 +1,7 @@
 import json
 import sqlite3
 
-from config import CONFIG_PATH, DB_PATH, RESET_PATH
+from config import APP_VERSION, CONFIG_PATH, DB_PATH, RESET_PATH
 
 def load_config(file) -> None:
     "Interface for loading a json file"
@@ -153,3 +153,30 @@ def import_csv():
     
     except Exception as e:
         messagebox.showerror("Import Error", str(e))
+
+def parse_version(v):
+    return tuple(map(int, v.split(".")))
+
+def check_for_updates():
+    import requests
+    import webbrowser
+    from tkinter import messagebox
+    REMOTE_URL = "https://raw.githubusercontent.com/rekordii/CashChronicles/main/VERSION"
+    DOWNLOAD_URL = "https://rekordii.github.io/DownloadHub/"
+    try:
+        response = requests.get(REMOTE_URL, timeout=5)
+        response.raise_for_status()
+        latest = response.text.strip()
+
+        if parse_version(latest) > parse_version(APP_VERSION):
+            if messagebox.askyesno(
+                "Update Available",
+                f"A new version {latest} is available!\n"
+                f"You are currently on {APP_VERSION}.\n\n"
+                "Open download page?"
+            ):
+                webbrowser.open(DOWNLOAD_URL)
+            else:
+                messagebox.showinfo("Up to Date", f"You are on the latest version ({APP_VERSION}).")
+    except Exception as e:
+        messagebox.showerror("Update Check Failed", f"Could not check for updates:\n{e}")
