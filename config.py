@@ -17,12 +17,12 @@ else:
     BASE_PATH = os.path.abspath(os.path.dirname(__file__))
 DATA_PATH = os.path.join(BASE_PATH, "data")
 RESET_PATH = os.path.join(DATA_PATH, "config_to_reset.json")
-CONFIG_SOURCE = os.path.join(DATA_PATH, "config.json")
 DB_SOURCE = os.path.join(DATA_PATH, "cash_chronicles.db")
 DB_PATH = os.path.join(USER_DATA_DIR, "cash_chronicles.db")
 CONFIG_PATH = os.path.join(USER_DATA_DIR, "config.json")
 ICON_PATH = os.path.join(DATA_PATH, "icon_120px.png")
 
+# ---------- Copy DB and config files ----------
 def atomic_copy(src, dest) -> None:
     """Copy file safely to dest using a temp file and atomic replace."""
     if not os.path.exists(dest):
@@ -33,6 +33,5 @@ def atomic_copy(src, dest) -> None:
             fdst.write(data)
         os.replace(temp_dest, dest)  # atomic move
 
-# ---------- Copy DB and config files ----------
 atomic_copy(DB_SOURCE, DB_PATH)
-atomic_copy(CONFIG_SOURCE, CONFIG_PATH)
+atomic_copy(RESET_PATH, CONFIG_PATH)
