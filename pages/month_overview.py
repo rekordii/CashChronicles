@@ -55,7 +55,7 @@ def display_month_overview(parent, pages, month_to_display, window):
     tree_columns = ("Tag", "Amount", "Descripion", "Type")
     transaction_tree = ttk.Treeview(transactions_frame, columns=tree_columns, show="headings")
     for col in tree_columns:
-        transaction_tree.heading(col, text=col)
+        transaction_tree.heading(col, text=col, command=lambda c=col: sort_col(transaction_tree, c, False))
         transaction_tree.column(col, anchor="center", width=100)
     transaction_tree.pack(fill="both", expand=True)
 
@@ -243,3 +243,14 @@ def get_summary(month_name):
     expense = execute_sql(expense_query)[0][0] or 0
     balance = income - expense
     return income, expense, balance
+
+def sort_col(tree, col, reverse):
+    data = [(tree.set(k, col), k) for k in tree.get_children("")] 
+    try:
+        data.sort(key=lambda t: float(t[0]), reverse=reverse)
+    except ValueError:
+        data.sort(key=lambda t: t[0], reverse=reverse)
+
+    for index, (val, k) in enumerate(data):
+        tree.move(k, "", index)
+    tree.heading(col, command=lambda: sort_col(tree, col, not reverse))
