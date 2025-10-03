@@ -155,7 +155,7 @@ def import_csv():
         messagebox.showerror("Import Error", str(e))
 
 def parse_version(v):
-    return tuple(map(int, v.split(".")))
+    return tuple(map(int, str(v).split(".")))
 
 def check_for_updates():
     import requests
@@ -176,7 +176,7 @@ def check_for_updates():
                 "Open download page?"
             ):
                 webbrowser.open(DOWNLOAD_URL)
-            else:
-                messagebox.showinfo("Up to Date", f"You are on the latest version ({APP_VERSION}).")
+        else:
+            messagebox.showinfo("Up to Date", f"You are on the latest version ({APP_VERSION}).")
     except Exception as e:
         messagebox.showerror("Update Check Failed", f"Could not check for updates:\n{e}")
