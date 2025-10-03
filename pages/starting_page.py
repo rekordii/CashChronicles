@@ -5,10 +5,12 @@ import tkinter.font as tkFont
 
 from .pages_config import *
 from .month_menu import display_month_menu
-from util import add_tag, add_year, delete_year, execute_sql, get_value
+from util import add_tag, add_year, delete_year, execute_sql, get_value, import_csv
 from db_integration import prepare_cash_chronicles
 
 def display_starting_page(parent, pages, window):
+
+    # ---------- Frame & button settings ----------
     frame = Frame(parent, bg=BG_COL)
 
     width = window.winfo_screenwidth()
@@ -40,6 +42,7 @@ def display_starting_page(parent, pages, window):
         "anchor": "w"
     }
 
+    # ---------- Button action functions ----------
     def on_add_year():
         popup = Toplevel(frame)
         popup.title("Add Year")
@@ -207,19 +210,17 @@ def display_starting_page(parent, pages, window):
         popup.bind_all("<Escape>", lambda e: popup.destroy())
         Button(popup, text="Delete", command=confirm_delete, **button_style).pack(pady=10)
 
-    view_btn = Button(frame, text="► View month", command=on_view_month, **button_style)
-    view_btn.pack(fill="y", pady=15, expand=True)
-
-    month_btn = Button(frame, text="► Add year", command=on_add_year, **button_style)
-    month_btn.pack(fill="y", pady=15, expand=True)
-
-    tag_btn = Button(frame, text="► Add tag", command=on_add_tag, **button_style)
-    tag_btn.pack(fill="y", pady=15, expand=True)
-
-    delete_btn = Button(frame, text="► Delete Year", command=on_delete_year, **button_style)
-    delete_btn.pack(fill="y", pady=15, expand=True)
+    # ---------- Adding Buttons to page ----------
+    for text, command in [
+        ("► View month", on_view_month),
+        ("► Add year", on_add_year),
+        ("► Add tag", on_add_tag),
+        ("► Delete Year", on_delete_year),
+        ("► Import .csv", import_csv)
+    ]:
+        Button(frame, text=text, command=command, **button_style).pack(anchor="center", pady=5)
 
     exit_btn = Button(frame, text="⤷ Exit", command=window.destroy, **button_style)
-    exit_btn.pack(fill="y", pady=(15, 50), expand=True)
+    exit_btn.pack(side="bottom", pady=30)
 
     return frame

@@ -1,6 +1,5 @@
 import json
 import sqlite3
-from pathlib import Path
 
 from config import CONFIG_PATH, DB_PATH, RESET_PATH
 
@@ -38,18 +37,6 @@ def add_tag(tag: str) -> None:
 def get_value(key: str) -> None:
     config = load_config(CONFIG_PATH)
     return config.get(key, None)
-
-def try_create() -> None: 
-    config_path = Path(CONFIG_PATH)
-    if not config_path.exists() or config_path.stat().st_size == 0:
-        with open (CONFIG_PATH, "w") as f:
-            json.dump({"months": [], "years": [], "tags": [], "types": []}, f, indent=4)
-
-    try:
-        with open(DB_PATH, 'x') as file:
-            pass
-    except FileExistsError:
-        pass
 
 def check_db_table_ident(month: str, year: int) -> str:
     """_summary_
@@ -97,3 +84,72 @@ def delete_year(year):
     config = load_config(CONFIG_PATH)
     config["years"].remove(year)
     save_config(config)
+
+def import_csv():
+    from tkinter import filedialog, messagebox
+    import csv
+    import os
+
+    file_path = filedialog.askopenfilename(
+        title="Select .csv file",
+        filetypes=[("CSV Files", "*.csv")]
+    )
+    if not file_path:
+        return
+    
+    tags = get_value("tags")
+    types = get_value("types")
+    months = get_value("months")
+    years = get_value("years")
+
+    name = os.path.splitext(os.path.basename(file_path))[0]
+    try:
+        month, year = name.split("_")
+        year = int(year)
+    except ValueError:
+        messagebox.showerror("Import Error", f"Filename {name} is not valid (expected Month_YY.csv).")
+        return
+
+    if month not in months or year not in years:
+        messagebox.showerror("Import Error", f"Table {name} is not existing.")
+        return
+
+    inserted, skipped = 0, 0
+    try:
+        with open(file_path, newline="", encoding="utf-8") as csvfile:
+            reader = csv.DictReader(csvfile)
+            req_cols = {"tag", "amount", "description", "type"}
+
+            if not req_cols.issubset(reader.fieldnames):
+                messagebox.showerror("Import error", f"CSV must contain columns: {', '.join(req_cols)}")
+                return
+
+            for row in reader:
+                tag = row["tag"].strip()
+                type = row["type"].strip()
+                desc = row["description"].strip()
+                try:
+                    amount = float(row["amount"])
+                except ValueError:
+                    skipped += 1
+                    continue
+
+                if tag not in tags or type not in types:
+                    skipped += 1
+                    continue
+
+                try:
+                    amount = round(amount, 2)
+                except ValueError:
+                    skipped += 1
+                    continue
+
+                execute_sql(f"""
+                    INSERT INTO {name} (tag, amount, description, type)
+                    VALUES ('{tag}', '{amount}', '{desc}', '{type}')
+                """)
+                inserted += 1
+        messagebox.showinfo("Import Finished", f"Imported {inserted} rows into {name}.\nSkipped {skipped} rows")
+    
+    except Exception as e:
+        messagebox.showerror("Import Error", str(e))

@@ -24,11 +24,13 @@
         "health",
         "hobbies",
         "housing",
+	    "investment",
         "other",
         "subscriptions",
         "transport",
         "travel",
-        "utilities"
+        "utilities",
+	    "wage"
     ],
     "types": [
         "expense",
