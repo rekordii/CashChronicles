@@ -118,6 +118,7 @@ def display_month_overview(parent, pages, month_to_display, window):
         Label(popup, text="Tag:", bg=BG_COL, fg=FG_COL).pack(pady=5)
         tag_var=StringVar()
         predef_tags = get_value("tags")
+        predef_tags.sort()
         tag_dropdown = ttk.Combobox(popup, textvariable=tag_var,
                                     values=predef_tags, state="readonly")
         tag_dropdown.pack(pady=5)

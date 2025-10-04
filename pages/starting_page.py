@@ -152,6 +152,7 @@ def display_starting_page(parent, pages, window):
         popup.config(bg=BG_COL)
 
         year_values = [str(y) for y in get_value("years")]
+        year_values.sort(key=int, reverse=True)
 
         # Custom font
         combo_font = tkFont.Font(family="Arial", size=16)

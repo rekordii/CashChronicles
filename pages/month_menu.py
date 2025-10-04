@@ -21,6 +21,21 @@ def display_month_menu(parent, pages, window):
     except ValueError:
         pass
 
+    month_order = {
+        "January": 1, "February": 2, "March": 3, "April": 4,
+        "May": 5, "June": 6, "July": 7, "August": 8,
+        "September": 9, "October": 10, "November": 11, "December": 12
+    }
+
+    def parse_table_name(name: str):
+        try:
+            month, year = name.split("_")
+            return (int(year), month_order.get(month, 0))
+        except ValueError:
+            return (0,0)
+        
+    tables.sort(key=lambda n: (-parse_table_name(n)[0], parse_table_name(n)[1]))
+
     # Custom font
     combo_font = tkFont.Font(family="Arial", size=16)
 
