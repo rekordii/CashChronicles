@@ -7,3 +7,4 @@ pages/__pycache__
 resources
 pyinstaller.txt
 test.py
+Output/
