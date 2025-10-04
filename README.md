@@ -6,28 +6,28 @@
 ## Features/Usage
 Get an overview of you expenses <br>
 ### Select a months expenses overview:
-> View Month -> Select Month to view from Dropdown Menu -> Confirm <br>
-> Requires the addition of a year
+- View Month -> Select Month to view from Dropdown Menu -> Confirm <br>
+- Requires the addition of a year
 
 ### Month Overview:
-> Top Bar: Overall expenses, income and balance as well as month name <br>
-> Left: Table with transactions (tag, amount, description, type) <br>
-> Top Right: Pie chart with expenses per tag overview <br>
-> Bottom right: Add/Remove transactions, Back and Exit
+- Top Bar: Overall expenses, income and balance as well as month name <br>
+- Left: Table with transactions (tag, amount, description, type) <br>
+- Top Right: Pie chart with expenses per tag overview <br>
+- Bottom right: Add/Remove transactions, Back and Exit
 
 ### Add a year to the overview (Jan-Dec):
-> Add year -> Type year (15-50) -> select in Month to view
+- Add year -> Type year (15-50) -> select in Month to view
 
 ### Add/Remove transactions:
-> Add: Add -> configure transaction -> Add <br>
-> Remove: Select transaction (click on it) -> Press remove button
+- Add: Add -> configure transaction -> Add <br>
+- Remove: Select transaction (click on it) -> Press remove button
 
 ### Add tag:
-> Add a tag that can be used to group expenses in month overview
+- Add a tag that can be used to group expenses in month overview
 
 ### Delete Year:
-> Delete ALL MONTHS from a specific year <br>
-> Will NOT ask to confirm
+- Delete ALL MONTHS from a specific year <br>
+- Will NOT ask to confirm
 
 ## How to run
 
