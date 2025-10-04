@@ -161,7 +161,7 @@ def check_for_updates():
     import requests
     import webbrowser
     from tkinter import messagebox
-    REMOTE_URL = "https://raw.githubusercontent.com/rekordii/CashChronicles/main/VERSION"
+    REMOTE_URL = "https://raw.githubusercontent.com/rekordii/CashChronicles/test_version/VERSION"
     DOWNLOAD_URL = "https://rekordii.github.io/DownloadHub/"
     try:
         response = requests.get(REMOTE_URL, timeout=5)
