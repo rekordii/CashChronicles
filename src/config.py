@@ -2,7 +2,7 @@ import os
 import platform
 import sys
 
-APP_VERSION = 1.0
+APP_VERSION = 1.1
 
 # ---------- Create data dirs ----------
 if platform.system() == "Windows":
