@@ -41,6 +41,8 @@ def display_starting_page(parent, pages, window):
         "bd": 1,
         "anchor": "w"
     }
+    small_button_style = button_style.copy()
+    small_button_style["anchor"] = "center"
 
     # ---------- Button action functions ----------
     def on_add_year():
@@ -82,7 +84,7 @@ def display_starting_page(parent, pages, window):
 
         popup.bind("<Return>", confirm_year)
         popup.bind_all("<Escape>", lambda e: popup.destroy())
-        Button(popup, text="Add", command=confirm_year, **button_style).pack(pady=10)
+        Button(popup, text="Add", command=confirm_year, **small_button_style).pack(pady=10)
 
     def on_view_month():
         if "month_menu" in pages:
@@ -129,7 +131,7 @@ def display_starting_page(parent, pages, window):
 
         popup.bind("<Return>", confirm_tag)
         popup.bind_all("<Escape>", lambda e: popup.destroy())
-        Button(popup, text="Add", command=confirm_tag, **button_style).pack(pady=10)
+        Button(popup, text="Add", command=confirm_tag, **small_button_style).pack(pady=10)
 
     def on_delete_year():
         popup = Toplevel(frame)
@@ -208,7 +210,7 @@ def display_starting_page(parent, pages, window):
 
         popup.bind("<Return>", confirm_delete)
         popup.bind_all("<Escape>", lambda e: popup.destroy())
-        Button(popup, text="Delete", command=confirm_delete, **button_style).pack(pady=10)
+        Button(popup, text="Delete", command=confirm_delete, **small_button_style).pack(pady=10)
 
     # ---------- Adding Buttons to page ----------
     for text, command in [
