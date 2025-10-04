@@ -4,6 +4,7 @@ from tkinter import messagebox
 import tkinter.font as tkFont
 
 from .pages_config import *
+from .pages_util import update_page
 from .month_overview import display_month_overview
 from src.util import execute_sql
 
@@ -80,13 +81,7 @@ def display_month_menu(parent, pages, window):
                 message="Please choose a month to review!"
                 )
             return
-        if "month_overview" in pages:
-            pages["month_overview"].destroy()
-            del pages["month_overview"]
-
-        pages["month_overview"] = display_month_overview(parent, pages, selected_month, window)
-        pages["month_overview"].grid(row=0, column=0, sticky="nsew")
-        pages["month_overview"].tkraise()
+        update_page("month_overview", pages, display_month_overview(parent, pages, selected_month, window))
         window.geometry("")
 
     conf_btn_style = button_style.copy()
