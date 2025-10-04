@@ -1,7 +1,7 @@
 import sqlite3
 
-from config import DB_PATH
-from util import get_value
+from src.config import DB_PATH
+from src.util import get_value
 
 def prepare_cash_chronicles() -> None:
     months = get_value("months")

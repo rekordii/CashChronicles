@@ -5,8 +5,8 @@ import tkinter.font as tkFont
 
 from .pages_config import *
 from .month_menu import display_month_menu
-from util import add_tag, add_year, check_for_updates, delete_year, execute_sql, get_value, import_csv
-from db_integration import prepare_cash_chronicles
+from src.util import add_tag, add_year, check_for_updates, delete_year, execute_sql, get_value, import_csv
+from src.db_integration import prepare_cash_chronicles
 
 def display_starting_page(parent, pages, window):
 

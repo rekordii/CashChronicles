@@ -1,7 +1,7 @@
 import json
 import sqlite3
 
-from config import APP_VERSION, CONFIG_PATH, DB_PATH, RESET_PATH
+from src.config import APP_VERSION, CONFIG_PATH, DB_PATH, RESET_PATH
 
 def load_config(file) -> None:
     "Interface for loading a json file"

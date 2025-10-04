@@ -6,7 +6,7 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import matplotlib.pyplot as plt
 
 from .pages_config import *
-from util import execute_sql, get_value
+from src.util import execute_sql, get_value
 
 def display_month_overview(parent, pages, month_to_display, window):
     frame = Frame(parent, bg=BG_COL)

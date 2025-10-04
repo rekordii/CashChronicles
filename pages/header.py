@@ -3,7 +3,7 @@ import tkinter.font as tkFont
 import tkinter as tk
 
 from .pages_config import BG_HEADER
-from config import ICON_PATH
+from src.config import ICON_PATH
 
 class Header(Frame):
     def __init__(self, parent):

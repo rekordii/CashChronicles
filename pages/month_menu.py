@@ -5,7 +5,7 @@ import tkinter.font as tkFont
 
 from .pages_config import *
 from .month_overview import display_month_overview
-from util import execute_sql
+from src.util import execute_sql
 
 def display_month_menu(parent, pages, window):
     frame = Frame(parent, bg=BG_COL)

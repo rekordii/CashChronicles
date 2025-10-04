@@ -2,7 +2,7 @@ from tkinter import *
 
 from pages import header, starting_page
 from pages.pages_config import BG_COL
-from config import ICON_PATH
+from src.config import ICON_PATH
 
 window = Tk()
 S_WIDTH = window.winfo_screenwidth()

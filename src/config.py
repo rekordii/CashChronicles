@@ -14,9 +14,10 @@ os.makedirs(USER_DATA_DIR, exist_ok=True)
 
 # ---------- Data Paths ----------
 if hasattr(sys, "_MEIPASS"):
-    BASE_PATH = sys._MEIPASS
+    BASE = sys._MEIPASS
 else:
-    BASE_PATH = os.path.abspath(os.path.dirname(__file__))
+    BASE = os.path.abspath(os.path.dirname(__file__))
+BASE_PATH = os.path.join(BASE, "..")
 DATA_PATH = os.path.join(BASE_PATH, "data")
 RESET_PATH = os.path.join(DATA_PATH, "config_to_reset.json")
 DB_SOURCE = os.path.join(DATA_PATH, "cash_chronicles.db")
