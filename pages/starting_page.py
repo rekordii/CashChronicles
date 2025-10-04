@@ -4,7 +4,9 @@ from tkinter import ttk
 import tkinter.font as tkFont
 
 from .pages_config import *
+from .pages_util import update_page
 from .month_menu import display_month_menu
+from .month_overview import display_month_overview
 from src.util import add_tag, add_year, check_for_updates, delete_year, execute_sql, get_value, import_csv
 from src.db_integration import prepare_cash_chronicles
 
@@ -45,6 +47,15 @@ def display_starting_page(parent, pages, window):
     small_button_style["anchor"] = "center"
 
     # ---------- Button action functions ----------
+    def on_curr_month():
+        if not int(CURRENT_MONTH[-2:]) in get_value("years"):
+            messagebox.showerror("Missing Year Tables", "First create the current year at [Add Year].")
+            return
+
+        on_view_month()
+        update_page("month_overview", pages, display_month_overview(parent, pages, CURRENT_MONTH, window))
+        window.geometry("")
+
     def on_add_year():
         popup = Toplevel(frame)
         popup.title("Add Year")
@@ -87,12 +98,7 @@ def display_starting_page(parent, pages, window):
         Button(popup, text="Add", command=confirm_year, **small_button_style).pack(pady=10)
 
     def on_view_month():
-        if "month_menu" in pages:
-            pages["month_menu"].destroy()
-            del pages["month_menu"]
-        pages["month_menu"] = display_month_menu(parent, pages, window)
-        pages["month_menu"].grid(row=0, column=0, sticky="nsew")
-        pages["month_menu"].tkraise()
+        update_page("month_menu", pages, display_month_menu(parent, pages, window))
 
     def on_add_tag():
         popup = Toplevel(frame)
@@ -214,6 +220,7 @@ def display_starting_page(parent, pages, window):
 
     # ---------- Adding Buttons to page ----------
     for text, command in [
+        (f"► {CURRENT_MONTH}", on_curr_month),
         ("► View month", on_view_month),
         ("► Add year", on_add_year),
         ("► Add tag", on_add_tag),
